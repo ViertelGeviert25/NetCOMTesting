@@ -139,7 +139,7 @@ namespace COMTesting
                     Marshal.ReleaseComObject(bindInfo);
 
                     // If the display name matches the one you are looking for ...
-                    if (displayName.IndexOf(objectDisplayName) != -1)
+                    if (displayName.ToLowerInvariant().IndexOf(objectDisplayName.ToLowerInvariant()) != -1)
                     {
                         // Query COM object via the display name
                         runningObjectTable.GetObject(monikerContainer[0], out object comInstance);
@@ -184,6 +184,10 @@ namespace COMTesting
             };
 
             var proc = Process.Start(startInfo);
+
+            // variante 1: guid, variante 2: name
+            var guid = typeof(T).GUID.ToString();
+            Console.WriteLine(guid);
 
 
             Stopwatch stopwatch = Stopwatch.StartNew();
