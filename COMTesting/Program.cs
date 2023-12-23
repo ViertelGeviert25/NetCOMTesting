@@ -43,21 +43,20 @@ namespace COMTesting
             // 3. ->
 
             var wordDocPath = @"H:\testdata\my-word-doc.docx";
-            //var procArguments = $"/q /t {wordDocPath}";
+            //var procArguments = $"/q"; // /t {wordDocPath}";
             //var procFileName = "winword.exe";
 
-     
+
             Document wordDoc = null;
             try
             {
                 // Application
                 wordDoc = ROTHelpers.LaunchProcessAndWaitForComInstance<Document>(wordDocPath); // procArguments
-       
+
                 wordDoc.Application.Visible = false;
                 wordDoc.Application.DisplayAlerts = WdAlertLevel.wdAlertsNone;
                 Console.WriteLine("File name: " + wordDoc.Name);
-                object missing = System.Reflection.Missing.Value;
-                wordDoc.Content.Text = string.Empty; //+= DateTime.Now.ToString() + "\tfoobar";
+                wordDoc.Content.Text = "test123"; //string.Empty; //+= DateTime.Now.ToString() + "\tfoobar";
                 wordDoc.Save();
                 //var doc = wordDoc.Documents.Open(wordDocPath);
                 //doc.Content.Text += DateTime.Now.ToString() + " wusel";
